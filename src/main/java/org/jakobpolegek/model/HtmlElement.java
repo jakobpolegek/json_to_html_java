@@ -8,7 +8,7 @@ public record HtmlElement(
         Map<String, String> attributes,
         Object content
 ) {
-    private static final Set<String> SELF_CLOSING_TAGS = Set.of(
+    public static final Set<String> SELF_CLOSING_TAGS = Set.of(
             "area", "base", "br", "col", "embed", "hr", "img", "input",
             "link", "meta", "param", "source", "track", "wbr"
     );

@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25818bd2-5d3f-4759-9edd-faeaae0ce275" name="Changes" comment="- init commit">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/jakobpolegek/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/jakobpolegek/model/HtmlElement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/jakobpolegek/service/HtmlRenderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/jakobpolegek/service/JsonAdapterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/jakobpolegek/util/FileUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/pageNotFound.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/pageNotFoundV2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/jakobpolegek/model/HtmlElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jakobpolegek/model/HtmlElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/jakobpolegek/service/JsonAdapterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jakobpolegek/service/JsonAdapterService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,17 +26,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JavaAutoRunManager">
-    <enabled-run-configurations>
-      <run-configuration type="MavenRunConfiguration" name="json_to_html_java [clean,package]" />
-    </enabled-run-configurations>
-  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jakobpolegek&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jakobpolegek/json_to_html_java.git&quot;,
+    &quot;accountId&quot;: &quot;17355358-c2db-4aab-9e93-71cb7dd7464e&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="30HLgoGjFHcDWknYLFgJiozDVXb" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -68,6 +69,9 @@
       <recent name="$PROJECT_DIR$/target" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/target" />
+    </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -85,6 +89,15 @@
       <option name="presentableId" value="Default" />
       <updated>1753279665331</updated>
     </task>
+    <task id="LOCAL-00001" summary="- init commit">
+      <option name="closed" value="true" />
+      <created>1753296402460</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1753296402460</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

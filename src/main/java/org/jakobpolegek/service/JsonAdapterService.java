@@ -17,19 +17,29 @@ public class JsonAdapterService {
 
     @SuppressWarnings("unchecked")
     private HtmlElement adaptElement(String tagName, Object jsonData) {
+        String cleanTagName = tagName.replace("\"", "");
+
         if (jsonData instanceof String textContent) {
-            return new HtmlElement(tagName.replace("\"", ""), Collections.emptyMap(), textContent);
+            return new HtmlElement(cleanTagName, Collections.emptyMap(), textContent);
         }
 
         if (!(jsonData instanceof Map)) {
-            return new HtmlElement(tagName.replace("\"", ""), Collections.emptyMap(), null);
+            return new HtmlElement(cleanTagName, Collections.emptyMap(), null);
         }
 
         Map<String, Object> dataMap = (Map<String, Object>) jsonData;
         Map<String, String> attributes = new LinkedHashMap<>();
+
+        if (HtmlElement.SELF_CLOSING_TAGS.contains(cleanTagName.toLowerCase())) {
+            for (Map.Entry<String, Object> entry : dataMap.entrySet()) {
+                attributes.put(entry.getKey(), entry.getValue().toString());
+            }
+            return new HtmlElement(cleanTagName, attributes, null);
+        }
+
         List<HtmlElement> children = new ArrayList<>();
 
-        if ("html".equalsIgnoreCase(tagName) && dataMap.containsKey("language")) {
+        if ("html".equalsIgnoreCase(cleanTagName) && dataMap.containsKey("language")) {
             attributes.put("lang", dataMap.get("language").toString());
         }
 
@@ -37,20 +47,45 @@ public class JsonAdapterService {
             String key = entry.getKey().replace("\"", "");
             Object value = entry.getValue();
 
+            if (key.equalsIgnoreCase("meta") && value instanceof Map) {
+                Map<String, Object> metaMap = (Map<String, Object>) value;
+                for (Map.Entry<String, Object> metaEntry : metaMap.entrySet()) {
+                    Map<String, String> metaAttrs = new LinkedHashMap<>();
+                    String metaKey = metaEntry.getKey();
+                    Object metaValue = metaEntry.getValue();
+
+                    String contentValue;
+                    if (metaValue instanceof Map) {
+                        Map<String, Object> contentMap = (Map<String, Object>) metaValue;
+                        contentValue = contentMap.entrySet().stream()
+                                .map(e -> e.getKey() + "=" + e.getValue().toString())
+                                .collect(Collectors.joining(", "));
+                    } else {
+                        contentValue = metaValue.toString();
+                    }
+
+                    if (metaKey.equalsIgnoreCase("charset")) {
+                        metaAttrs.put("charset", contentValue);
+                    } else {
+                        metaAttrs.put("name", metaKey);
+                        metaAttrs.put("content", contentValue);
+                    }
+                    children.add(new HtmlElement("meta", metaAttrs, null));
+                }
+                continue;
+            }
+
+
             if (key.equalsIgnoreCase("attributes")) {
                 if (value instanceof Map) {
                     processAttributesMap((Map<String, Object>) value, attributes);
                 }
-            }
-            else if (key.equalsIgnoreCase("style")) {
+            } else if (key.equalsIgnoreCase("style")) {
                 if (value instanceof Map) {
                     attributes.put("style", formatStyleMap((Map<String, Object>) value));
                 }
-            }
-            else if (key.equalsIgnoreCase("language")) {
-
-            }
-            else {
+            } else if (key.equalsIgnoreCase("language")) {
+            } else {
                 if (value instanceof List) {
                     for (Object item : (List<?>) value) {
                         children.add(adaptElement(key, item));
@@ -62,7 +97,7 @@ public class JsonAdapterService {
         }
 
         Object content = children.isEmpty() ? null : children;
-        return new HtmlElement(tagName.replace("\"", ""), attributes, content);
+        return new HtmlElement(cleanTagName, attributes, content);
     }
 
     @SuppressWarnings("unchecked")
